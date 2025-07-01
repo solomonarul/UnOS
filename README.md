@@ -7,3 +7,4 @@ An operating system.
 - [OSDev](https://wiki.osdev.org/Going_Further_on_x86)
 - [ToaruOS](https://github.com/klange/toaruos)
 - [LyOS](https://github.com/Jimx-/lyos)
+- [Little OS book](https://littleosbook.github.io)
