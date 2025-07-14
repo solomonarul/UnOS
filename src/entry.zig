@@ -1,4 +1,5 @@
 const Setup = @import("kernel/setup.zig");
+const Serial = @import("kernel/serial.zig");
 const Console = @import("kernel/console.zig");
 
 export fn _start() callconv(.Naked) noreturn {
@@ -18,7 +19,9 @@ export fn kmain() void {
         .minor = 1,
         .patch = 0,
     };
+    Serial.init();
     Console.init();
     Console.printf("Welcome to UnOS! v. {}.{}.{}\n", version);
     Console.puts("-------------------------\n\n> ");
+    Serial.puts("Reached end of kernel execution!\r\n");
 }

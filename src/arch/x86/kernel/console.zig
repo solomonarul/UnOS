@@ -63,7 +63,6 @@ pub fn clear() void {
 }
 
 pub fn putch(c: u8) void {
-    
     if (c == '\n') {
         x = 0;
         y += 1;

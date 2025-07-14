@@ -1,13 +1,11 @@
 const cpu = @import("cpu_data");
 const std = @import("std");
 
-const InternalConsole = switch (cpu.arch) {
-    .x86 => @import("../arch/x86/kernel/console.zig"),
-    .aarch64 => @import("../arch/aarch64/kernel/console.zig"),
+const InternalSerial = switch (cpu.arch) {
+    .x86 => @import("../arch/x86/kernel/serial.zig"),
+    .aarch64 => @import("../arch/x86/kernel/serial.zig"),
     else => null,
 };
-
-const Serial = @import("serial.zig");
 
 fn writer_callback(_: void, string: []const u8) error{}!usize {
     puts(string);
@@ -17,12 +15,8 @@ fn writer_callback(_: void, string: []const u8) error{}!usize {
 const writer = std.io.Writer(void, error{}, writer_callback){ .context = {} };
 
 pub fn init() void {
-    InternalConsole.init();
-    Serial.puts("Console output has been initialised!\r\n");
-}
-
-pub fn clear() void {
-    InternalConsole.clear();
+    InternalSerial.init();
+    puts("Serial output initialised!\r\n");
 }
 
 pub fn puts(data: []const u8) void {
@@ -31,7 +25,7 @@ pub fn puts(data: []const u8) void {
 }
 
 pub fn putch(data: u8) void {
-    InternalConsole.putch(data);
+    InternalSerial.putch(data);
 }
 
 pub fn printf(comptime format: []const u8, args: anytype) void {
