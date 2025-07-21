@@ -10,8 +10,10 @@ pub inline fn init() void {
     asm volatile (
         \\ movl %[stk], %esp
         \\ movl %esp, %ebp
-        \\ jmp kmain
+        \\ call kmain
         :
         : [stk] "{ecx}" (@intFromPtr(&stack) + @sizeOf(@TypeOf(stack))),
     );
+
+    // TODO: make a panic mechanism or something as kmain should not end
 }

@@ -30,7 +30,7 @@ inline fn serial_output_is_fifo_empty(com: u32) bool {
     return (Ports.input_b(com + LINE_STATUS_PORT_OFFSET) & 0x20) != 0;
 }
 
-pub fn init() void {
+pub inline fn init() void {
     serial_output_configure_baud_rate(COM1_BASE, 3);
     serial_output_configure_line(COM1_BASE);
     serial_output_configure_buffers(COM1_BASE);

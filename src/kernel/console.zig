@@ -16,12 +16,12 @@ fn writer_callback(_: void, string: []const u8) error{}!usize {
 
 const writer = std.io.Writer(void, error{}, writer_callback){ .context = {} };
 
-pub fn init() void {
+pub inline fn init() void {
     InternalConsole.init();
     Serial.puts("Console output has been initialised!\r\n");
 }
 
-pub fn clear() void {
+pub inline fn clear() void {
     InternalConsole.clear();
 }
 
@@ -30,10 +30,10 @@ pub fn puts(data: []const u8) void {
         putch(c);
 }
 
-pub fn putch(data: u8) void {
+pub inline fn putch(data: u8) void {
     InternalConsole.putch(data);
 }
 
-pub fn printf(comptime format: []const u8, args: anytype) void {
+pub inline fn printf(comptime format: []const u8, args: anytype) void {
     std.fmt.format(writer, format, args) catch unreachable;
 }

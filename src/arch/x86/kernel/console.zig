@@ -51,7 +51,7 @@ fn set_pos(index: usize) void {
     Ports.output_b(FB_DATA_PORT, @intCast(index & 0xFF));
 }
 
-pub fn init() void {
+pub inline fn init() void {
     clear();
 }
 
