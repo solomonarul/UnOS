@@ -10,7 +10,7 @@ b86:
 	@zig build -DprojectTarget=x86
 
 r86: b86
-	@qemu-system-x86_64 -kernel zig-out/bin/kernel.elf -debugcon stdio -vga virtio -m 4G -machine q35,accel=kvm:tcg -no-reboot -no-shutdown
+	@qemu-system-x86_64 -kernel zig-out/bin/kernel.elf -debugcon stdio -vga virtio -m 4G -machine q35,accel=kvm:whpx:tcg -no-reboot -no-shutdown
 
 b4b:
 	@zig build -DprojectTarget=rpi4b
