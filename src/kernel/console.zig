@@ -14,7 +14,7 @@ fn writer_callback(_: void, string: []const u8) error{}!usize {
     return string.len;
 }
 
-const writer = std.io.Writer(void, error{}, writer_callback){ .context = {} };
+const writer = std.io.GenericWriter(void, error{}, writer_callback){ .context = {} };
 
 pub inline fn init() void {
     InternalConsole.init();

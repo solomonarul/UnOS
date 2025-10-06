@@ -58,6 +58,6 @@ inline fn load_gdt(gdtr: *const Gdtr) void {
         \\ next:
         :
         : [gdtr] "{eax}" (gdtr),
-        : "memory", "ax"
+        : .{ .memory = true, .ax = true }
     );
 }

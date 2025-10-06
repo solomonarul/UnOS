@@ -7,10 +7,12 @@ pub fn build(b: *std.Build) anyerror!void {
 
     const kernel = b.addExecutable(.{
         .name = "kernel8.img",
-        .root_source_file = b.path("src/entry.zig"),
-        .target = target,
-        .optimize = optimize,
-        .code_model = .small,
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("src/entry.zig"),
+            .optimize = optimize,
+            .target = target,
+            .code_model = .medium
+        })
     });
     kernel.setLinkerScript(b.path("src/arch/aarch64/linker.ld"));
 
