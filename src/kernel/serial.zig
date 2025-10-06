@@ -3,7 +3,7 @@ const std = @import("std");
 
 const InternalSerial = switch (cpu.arch) {
     .x86 => @import("../arch/x86/kernel/serial.zig"),
-    .aarch64 => @import("../arch/x86/kernel/serial.zig"),
+    .aarch64 => @import("../arch/aarch64/kernel/serial.zig"),
     else => null,
 };
 

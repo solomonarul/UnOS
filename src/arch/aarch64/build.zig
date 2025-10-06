@@ -1,7 +1,13 @@
 const std = @import("std");
 
 pub fn build(b: *std.Build) anyerror!void {
-    const target = b.standardTargetOptions(.{ .default_target = .{ .cpu_arch = .aarch64, .os_tag = .freestanding, .abi = .none } });
+    const target = b.standardTargetOptions(.{
+        .default_target = .{
+            .cpu_arch = .aarch64,
+            .os_tag = .freestanding,
+            .abi = .none
+        }
+    });
 
     const optimize = b.standardOptimizeOption(.{});
 
@@ -11,7 +17,7 @@ pub fn build(b: *std.Build) anyerror!void {
             .root_source_file = b.path("src/entry.zig"),
             .optimize = optimize,
             .target = target,
-            .code_model = .medium
+            .code_model = .tiny
         })
     });
     kernel.setLinkerScript(b.path("src/arch/aarch64/linker.ld"));

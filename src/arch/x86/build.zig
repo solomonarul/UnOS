@@ -1,15 +1,17 @@
 const std = @import("std");
 
+const x86Feature = std.Target.x86.Feature;
+
 pub fn build(b: *std.Build) anyerror!void {
-    const enabled_features = [_]std.Target.x86.Feature{
-        std.Target.x86.Feature.soft_float,
+    const enabled_features = [_]x86Feature{
+        .soft_float,
     };
-    const disabled_features = [_]std.Target.x86.Feature{
-        std.Target.x86.Feature.mmx,
-        std.Target.x86.Feature.sse,
-        std.Target.x86.Feature.sse2,
-        std.Target.x86.Feature.avx,
-        std.Target.x86.Feature.avx2,
+    const disabled_features = [_]x86Feature{
+        .mmx,
+        .sse,
+        .sse2,
+        .avx,
+        .avx2,
     };
     const target = b.standardTargetOptions(.{ .default_target = .{
         .cpu_arch = .x86,
